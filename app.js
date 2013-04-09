@@ -1,12 +1,9 @@
 
-/**
- * Module dependencies.
- */
-
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
+  , tropoapi = require('tropo-webapi')
   , path = require('path');
 
 var app = express();
@@ -30,7 +27,14 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/text', function(req, res){
+  var tropo = new tropoapi.TropoWebAPI();
+  tropo.call("+19739450937", null, null, null, null, null, "SMS", null, null, null);
+  tropo.say("Tag, you're it!!");
+
+  res.send(TropoJSON(tropo));
+
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
