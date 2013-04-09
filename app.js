@@ -3,7 +3,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , tropoapi = require('tropo-webapi')
+  , twilio = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN)
   , path = require('path');
 
 var app = express();
@@ -28,11 +28,22 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/text', function(req, res){
-  var tropo = new tropoapi.TropoWebAPI();
-  tropo.call("+19739450937", null, null, null, null, null, "SMS", null, null, null);
-  tropo.say("Tag, you're it!!");
 
-  res.send(TropoJSON(tropo));
+  twilio.sendSms({
+
+      to:'+19739450937', 
+      from: '+18625794534', 
+      body: 'word to your mother.' 
+
+  }, function(err, responseData) { 
+
+      if (!err) { 
+          console.log(responseData.from); 
+          console.log(responseData.body); 
+
+      }
+  });
+
 
 });
 
