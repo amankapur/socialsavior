@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html>
   <head>
     <title>Getting Started Extension's Popup</title>
@@ -15,15 +15,41 @@
         width: 75px;
         height: 75px;
       }
+
+      #peeps {
+        margin-bottom: 20px;
+      }
     </style>
     <script src="popup.js"></script>
   </head>
   <body>
     <div>
       <h1>Social Savior Actions</h1>
-      <div id="listActions">
-        <h3> When I go to...</h3>
-      </div>
+      <a href="show.html"> Current Settings </a>
+      
+        <!-- <button id="url">Add more urls </button> -->
+        <button id="save"> Save changes </button>
+        <div class="listActions">
+          <div class="action">
+            <h3> When I go to...</h3>
+            <input id="website" type="text" placeholder="Enter website"></input>
+            <h3> Text these people to save me ... </h3>
+             <button id="peeps">Add more peeps </button>
+              <div id="textees">
+                <div class="savior">
+                  <input id="textee-name" type="text" placeholder="Enter name of person..."></input>
+                  <input id="textee-number" type="text" placeholder="+1-XXX-XXX-XXXX"></input>
+                </div>        
+              </div>
+            <hr>
+          </div>
+        </div>
+        <div id="saved" style="display:none">
+          <h2> Data saved... reloading </h2>
+        </div>
+        <div id="error" style="display:none">
+          <h2> Enter valid data </h2>
+        </div>
     </div>
   </body>
     <script type="text/javascript" src="jquery.min.js"></script>

@@ -1,9 +1,71 @@
 $(document).ready(function() {
 
-	if (!localStorage['id']) {
-		var id = (Math.random() * 100000000000000000).toString();
-		localStorage['id'] = id;
-	}
+
+	$("#peeps").on('click', function(){
+	
+		peeps = this;
+		placeholder = $($(peeps).siblings('div')[0]).children()
+
+		text = "<div class='savior'> <input id='textee-name' type='text' placeholder='Enter name of person...'></input><input id='textee-number' type='text' placeholder='+1-XXX-XXX-XXXX'></input></div>   "
+		$(placeholder).append(text);
+	
+	});
+
+	$("#url").on('click', function(){
+
+		console.log('url click');
+
+		text= " <div class='action'> <h3> When I go to...</h3> <input type='text' placeholder='Enter website'></input> <h3> Text these people to save me ... </h3> <button id='peeps'>Add more peeps </button> <div id='textees'><div class='savior'><input id='textee-name' type='text' placeholder='Enter name of person...''></input><input id='textee-number' type='text' placeholder='+1-XXX-XXX-XXXX'></input></div></div><hr></div>";
+
+		$(".listActions").append(text);
+	});
+
+	$("#save").on('click', function(){
+		$.each($(".action"), function(index,value){
+
+			inputs = $(value).find('input');
+			arr = {}
+
+			if($(inputs[0]).val() == []){
+				$("#error").show(1000, function(){
+						location.reload();
+				});
+			}
+
+			url = $(inputs[0]).val()
+			friends = []
+			for(var i =1; i< inputs.length; i= i+2){
+				name = $(inputs[i]).val();
+				number = $(inputs[i+1]).val();
+
+				if(name == [] || number == []) {
+					$("#error").show(1000, function(){
+						location.reload();
+					});
+				}
+				friends.push(name);
+				friends.push(number);
+			}
+			console.log(url);
+			console.log(friends);
+
+			
+
+			if (url != [] && name!=[] && number != []){
+				localStorage.setItem(url, friends);
+				$("#saved").show(1000, function(){
+					location.reload();
+				});
+
+			}
+
+		});
+	});
+
+	// if (!localStorage['id']) {
+	// 	var id = (Math.random() * 100000000000000000).toString();
+	// 	localStorage['id'] = id;
+	// }
 
 	// var actions = [
 	// 	{site : "reddit.com", time : "5", actions : {
@@ -33,6 +95,8 @@ $(document).ready(function() {
 
 	var data = {id : "blahblah", phonenumbers : ["+19739450937"]};
 
+
+
 	var html = "";
 	for (j=0; j<actions.length; j++) {
 		
@@ -58,10 +122,16 @@ $(document).ready(function() {
 
 	html += "<button class='saveEdits'>Save Edits</button>";
 
-	$("#listActions").append(html);
+	$(".listActions").append(html);
 
 	$(".saveEdits").on("click", saveEdits());
 });
+
+
+
+function isOdd(value) {
+return (value%2 == 1);
+}
 
 function saveEdits() {
 	// var inputs = $("input:text.name");

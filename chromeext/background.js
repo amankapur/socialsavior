@@ -16,6 +16,7 @@ function updateIcon() {
 
 chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
 	console.log(tab.url);
+	$("#listactions")
 });
 
 chrome.tabs.onCreated.addListener(function(tabID, changeInfo, tab) {
