@@ -12,17 +12,18 @@ $(document).ready(function() {
 		console.log(key);
 		console.log(localStorage[key]);
 
-		$("#list").append("<div>");
-		$("#list").append(key);
-		$("#list").append("<br>");
-		$("#list").append(localStorage[key]);
-		$("#list").append("<button class='del' id=" + key + "> Delete this </button>");
+		var keys = localStorage[key].split(",");
+
+		$("#list").append("<h3> When I visit " + key + ":</h3>");
+		for (i=0; i<keys.length; i+=3) {
+			$("#list").append("Text <strong>" + keys[i]   + "</strong>");
+			$("#list").append(' the message <strong>"'    + keys[i+2] + '"</strong>');
+			$("#list").append(' at <strong>' + keys[i+1] + '.</strong><br>');
+		}
+		$("#list").append("<br><button class='del btn btn-danger' id=" + key + ">delete</button>");
 		$("#list").append("<hr>");
-		$("#list").append("</div>");
 
 	}
-
-
 
 		$(".del").bind('click', function(){
 			id = this.id;

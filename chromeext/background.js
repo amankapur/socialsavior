@@ -37,7 +37,7 @@ chrome.tabs.onCreated.addListener(function(tabID, changeInfo, tab) {
 function sendPost(url, arr) {
 
 	array = arr.split(',');
-
+	console.log(arr);
 	for (var i =0; i< array.length; i+=3){
 		name = array[i];
 		number = array[i+1];

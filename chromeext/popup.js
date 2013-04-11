@@ -6,7 +6,7 @@ $(document).ready(function() {
 		peeps = this;
 		placeholder = $($(peeps).siblings('div')[0]).children()
 
-		text = "<div class='savior'> <input id='textee-name' type='text' placeholder='Enter name of person...'></input><input id='textee-number' type='text' placeholder='+1-XXX-XXX-XXXX'></input></div>   "
+		text = "<div class='savior'> <input id='textee-name' type='text' placeholder='Enter name of person...'> </input><input id='textee-number' type='text' placeholder='+1-XXX-XXX-XXXX'> <input id='textee-message' type='text' placeholder='Enter Message'></input></div>   "
 		$(placeholder).append(text);
 	
 	});

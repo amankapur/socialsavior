@@ -3,7 +3,7 @@
     <title>Getting Started Extension's Popup</title>
     <style>
       body {
-        min-width: 600px;
+        min-width: 700px;
         overflow-x: hidden;
       }
 
@@ -19,28 +19,38 @@
         margin-bottom: 20px;
       }
     </style>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <script src="popup.js"></script>
   </head>
   <body>
     <div>
-      <h1>Social Savior Actions</h1>
-      <a href="show.html"> Current Settings </a>
-      
+      <h1>Social Savior</h1>
+      <ul class="nav nav-pills">
+        <li class="active">
+          <a href="popup.html">Add Actions</a>
+        </li>
+        <li>
+          <a href="show.html">Saved Actions</a>
+        </li>
+        <li>
+          <a href="http://www.insideropinion.herokuapp.com">About</a>
+        </li>
+      </ul>
         <!-- <button id="url">Add more urls </button> -->
-        <button id="save"> Save changes </button>
         <div class="listActions">
           <div class="action">
             <h3> When I go to...</h3>
             <input id="website" type="text" placeholder="Enter website"></input>
-            <h3> Text these people to save me ... </h3>
-             <button id="peeps">Add more peeps </button>
-              <div id="textees">
-                <div class="savior">
-                  <input id="textee-name" type="text" placeholder="Enter name of person..."></input>
-                  <input id="textee-number" type="text" placeholder="+1XXXXXXXXXX"></input>
-                  <input id="textee-message" type="text" placeholder="Enter message"></input>
-                </div>        
-              </div>
+            <h3> Text these people to save me! </h3>
+            <div id="textees">
+              <div class="savior">
+                <input id="textee-name" type="text" placeholder="Enter name of person..."></input>
+                <input id="textee-number" type="text" placeholder="+1XXXXXXXXXX"></input>
+                <input id="textee-message" type="text" placeholder="Enter message"></input>
+              </div>        
+            </div>
+            <button class="btn" id="peeps" style="font-family: arial bold;font-size: x-large;">+</button>
+            <button id="save" class="btn" style="margin-bottom: 20px"> Save actions </button>
             <hr>
           </div>
         </div>
