@@ -34,10 +34,10 @@ $(document).ready(function() {
 
 			url = $(inputs[0]).val()
 			friends = []
-			for(var i =1; i< inputs.length; i= i+2){
+			for(var i =1; i< inputs.length; i=i+3){
 				name = $(inputs[i]).val();
 				number = $(inputs[i+1]).val();
-
+				message = $(inputs[i+2]).val();
 				if(name == [] || number == []) {
 					$("#error").show(1000, function(){
 						location.reload();
@@ -45,7 +45,9 @@ $(document).ready(function() {
 				}
 				friends.push(name);
 				friends.push(number);
+				friends.push(message);
 			}
+
 			console.log(url);
 			console.log(friends);
 

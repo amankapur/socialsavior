@@ -38,11 +38,11 @@ function sendPost(url, arr) {
 
 	array = arr.split(',');
 
-	for (var i =0; i< array.length; i+=2){
+	for (var i =0; i< array.length; i+=3){
 		name = array[i];
 		number = array[i+1];
-
-		$.post('http://socialsavior.herokuapp.com/text', {name: name, number: number}, function(data){
+		message = array[i+2];
+		$.post('http://socialsavior.herokuapp.com/text', {name: name, number: number, message : message}, function(data){
 			console.log(data);
 		});
 	}
