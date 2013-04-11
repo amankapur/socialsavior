@@ -8,6 +8,7 @@ var express = require('express')
 var app = express();
 
 app.configure(function(){
+
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
@@ -17,8 +18,15 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  // app.use(allowCrossDomain);
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
+});
+
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
 });
 
 app.configure('development', function(){
@@ -31,3 +39,12 @@ app.post('/text', user.text);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+var allowCrossDomain = function(req, res, next) {
+
+    res.header('Access-Control-Allow-Origin', config.allowedDomains);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+};

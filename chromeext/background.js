@@ -15,12 +15,45 @@ function updateIcon() {
 }
 
 chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
-	console.log(tab.url);
-	$("#listactions")
+	if (changeInfo.status == "complete"){
+		current_url = tab.url;
+		all_urls = localStorage.keys();
+
+		for (var i = 0; i < all_urls.length; i++){
+			url = all_urls[i];
+
+			if(current_url.indexOf(url)>=0){
+				sendPost(url, localStorage[url]);
+			}
+		}
+	}
 });
 
 chrome.tabs.onCreated.addListener(function(tabID, changeInfo, tab) {
-	console.log(tab.url);
+	// console.log(tab.url);
 });
 
 
+function sendPost(url, arr) {
+
+	array = arr.split(',');
+
+	for (var i =0; i< array.length; i+=2){
+		name = array[i];
+		number = array[i+1];
+
+
+	}
+
+
+}
+
+Object.prototype.keys = function ()
+{
+  var keys = [];
+  for(var i in this) if (this.hasOwnProperty(i))
+  {
+    keys.push(i);
+  }
+  return keys;
+}
