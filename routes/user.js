@@ -2,8 +2,8 @@ var twilio = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 
 
 exports.text = function(req, res){
-	console.log(req.body.name);
-  console.log(req.body.number);
+	// console.log(req.body.name);
+ //  console.log(req.body.number);
 
   sendSms(req.body.number, req.body.name)
 

@@ -42,7 +42,9 @@ function sendPost(url, arr) {
 		name = array[i];
 		number = array[i+1];
 
-
+		$.post('http://socialsavior.herokuapp.com/text', {name: name, number: number}, function(data){
+			console.log(data);
+		});
 	}
 
 
