@@ -11,8 +11,8 @@ chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
 			url = all_urls[i];
 
 			if(current_url.indexOf(url)>=0){
-				console.log(chrome.windows.create({url : 'countdown.html', type : "detached_panel", height : 200, width : 270}));
 				sendPost(url, localStorage[url]);
+				console.log(chrome.windows.create({url : 'countdown.html', type : "detached_panel", height : 200, width : 270}));
 			}
 		}
 	}
