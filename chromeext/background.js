@@ -2,18 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-var min = 1;
-var max = 5;
-var current = min;
-
-function updateIcon() {
-  chrome.browserAction.setIcon({path:"icon" + current + ".png"});
-  current++;
-
-  if (current > max)
-    current = min;
-}
-
 chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
 	if (changeInfo.status == "complete"){
 		current_url = tab.url;
@@ -23,6 +11,7 @@ chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
 			url = all_urls[i];
 
 			if(current_url.indexOf(url)>=0){
+				console.log(chrome.windows.create({url : 'countdown.html', type : "detached_panel", height : 200, width : 270}));
 				sendPost(url, localStorage[url]);
 			}
 		}
@@ -30,12 +19,9 @@ chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tab) {
 });
 
 chrome.tabs.onCreated.addListener(function(tabID, changeInfo, tab) {
-	// console.log(tab.url);
 });
 
-
 function sendPost(url, arr) {
-
 	array = arr.split(',');
 	console.log(arr);
 	for (var i =0; i< array.length; i+=3){
@@ -46,8 +32,6 @@ function sendPost(url, arr) {
 			console.log(data);
 		});
 	}
-
-
 }
 
 Object.prototype.keys = function ()
